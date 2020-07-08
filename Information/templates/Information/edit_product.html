@@ -1,0 +1,42 @@
+{% extends 'Information/main.html' %}
+{% block content %}
+{% include 'Information/navbar.html' %}
+<div class="container-fluid">
+    <br>
+    <div class="row">
+        <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <h2>Please edit the form below</h2>
+            <div class="form">
+                <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                    <label for="name">Product Name:</label><input name="name" value='{{product.name}}' id="name" class="form-control" type="text">
+                    <label for="price">Price:</label><input name="price" id='price' value='{{product.price}}' class="form-control" type="number">
+                    <label for="category">Category</label><select id="category" name="category" value='{{product.category}}' class="form-control">
+                        <option value="Footwear">Footwear</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Clothing">Clothing</option>
+                        <option value="Books">Books</option>
+                        <option value="other">Others</option>
+                    </select>
+                    <label for="description">Description:</label><textarea name="description" id='description' class="form-control">{{product.description}}</textarea>
+                    <br>
+                    <label for="image1">Change First Product Image: Previous-image: {{product.product_image1}} </label><input name="image1"  id='image1' type="file">
+                    <br>
+                    <label for="image2">Change Second Product Image: Previous-image: {{product.product_image2}} </label><input name="image2"   id='image2' type="file">
+                    <br>
+                    <label for="image3">Change Third Product Image: Previous-image: {{product.product_image3}} </label><input name="image3"  id='image3' type="file">
+                    <br>
+                    <label for="image4">Change Fourth Product Image: Previous-image: {{product.product_image4}} </label><input name="image4"  id='image4' type="file">
+                    <br>
+                    <label for='tag'>Change the tag:  </label><input id=tag type=text name=tag value='{{product.tags.tag_name}}'>
+                    <br>
+                    <input class="btn btn-primary btn block" value="Save" type="submit">
+                </form>
+                <br>
+                <a class="btn btn-danger" href="{% url 'homeS' %}">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

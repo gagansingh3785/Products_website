@@ -1,0 +1,87 @@
+{% extends 'Information/main.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/product.css' %}">
+{% include 'Information/navbar.html' %}
+    <br>
+    <div id='message-outer'>
+    </div>
+    <div style='display: flex; justify-content: flex-end; margin-right:20px;'>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="text" id='search-input' name="tag" placeholder="Search a product">
+            <input type="submit" class="btn btn-success btn-md" value='Search'>
+        </form>
+    </div>
+    {% for product in products %}
+    <br>
+        <div class="row">
+
+                <div class="card card-image">
+                        <div class="flexing-this">
+
+                            {% if product.product_image1 %}
+                                <img class='images{{forloop.counter}}' src="{{product.product_image1.url}}" height="200px" width="300px">
+                            {% endif %}
+                            {% if product.product_image2 %}
+                                <img class='images{{forloop.counter}}' src="{{product.product_image2.url}}" height="200px" width="300px">
+                            {% endif %}
+                            {% if product.product_image3 %}
+                                <img class='images{{forloop.counter}}' src="{{product.product_image3.url}}" height="200px" width="300px">
+                            {% endif %}
+                            {% if product.product_image4 %}
+                                <img class='images{{forloop.counter}}' src="{{product.product_image4.url}}" height="200px" width="300px">
+                            {% endif %}
+
+                        </div>
+                    <div class="indicators">
+                        <span><div class="indicator{{forloop.counter}} some" onclick='move1({{forloop.counter}})'></div></span>
+                        <span><div class="indicator{{forloop.counter}} some" onclick='move2({{forloop.counter}})'></div></span>
+                        <span><div class="indicator{{forloop.counter}} some" onclick='move3({{forloop.counter}})'></div></span>
+                        <span><div class="indicator{{forloop.counter}} some" onclick='move4({{forloop.counter}})'></div></span>
+                    </div>
+                    </div>
+
+                <div class="col-lg-8">
+                    <div class="card cardextra">
+                        <div class="card-body">
+                            <h5 class="card-title">Product Information:</h5>
+                            <p><strong>Name:</strong> {{product.name}}</p>
+                            <p><strong>Description:</strong> {{product.description}}</p>
+                            <p><strong>Price:</strong> {{product.price}}</p>
+                            <a class="btn btn-success" href="{% url 'confirm' product.pk %}">Buy</a>
+                            <button class="btn btn-primary" onclick='makereq({{product.pk}})'>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+    {% endfor %}
+</div>
+<script src="{% static 'js/product.js' %}"></script>
+<script>
+    function makereq(key)
+    {
+        console.log(key);
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            let para = document.createElement('span');
+            para.id = 'message-inner';
+            let text = document.createTextNode(this.responseText);
+            console.log(text);
+            para.appendChild(text);
+            document.getElementById('message-outer').appendChild(para);
+            document.getElementById('message-outer').style.textAlign = 'Center';
+            document.getElementById('message-inner').style.backgroundColor = 'grey';
+            document.getElementById('message-inner').style.color = 'white';
+            document.getElementById('message-inner').style.fontWeight = 'bolder';
+            document.getElementById('message-inner').style.boxShadow = '0px 0px 10px grey';
+            document.getElementById('message-inner').style.padding = '5px 5px 5px 5px';
+            }
+        };
+        xhttp.open("GET", "/add_cart/"+key, true);
+        xhttp.send();
+    }
+</script>
+{% endblock %}

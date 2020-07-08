@@ -1,0 +1,46 @@
+{% extends 'Information/main.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <div id="login-container" style="height:470px">
+        <div id="login-head">
+            <p>REGISTER</p>
+        </div>
+
+        <br>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+                </div>
+                {{form.username}}
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon2"><i class="fas fa-envelope"></i></span>
+                </div>
+                {{form.email}}
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon3"><i class="fas fa-key"></i></span>
+                </div>
+                {{form.password1}}
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon4"><i class="fas fa-key"></i></span>
+                </div>
+                {{form.password2}}
+            </div>
+            <input id=Submit_button type="submit" value="Register">
+        </form>
+        {% for message in messages %}
+        <p id="message">{{message}}</p>
+        {% endfor %}
+        <p>Already have an account, <a class=link href="{% url 'login' %}">Login</a></p>
+    </div>
+<script src="{% static 'js/register.js' %}"></script>
+
+{% endblock %}

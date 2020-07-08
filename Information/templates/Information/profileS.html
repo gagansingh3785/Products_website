@@ -1,0 +1,46 @@
+{% extends 'Information/main.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+ {% include 'Information/navbar.html' %}
+<div class="container-fluid">
+    <br>
+    <div class="row">
+        <div id='change' class="col-md-4">
+            <div class="card card-modify">
+                <div class="card-header">
+                    <h5>Seller Information</h5>
+                </div>
+                <div class="card-body">
+                    <p>Username: {{request.user.username}}</p>
+                    <p>Email: {{request.user.email}}</p>
+                    <p>Phone: {{info.phone}}</p>
+                    <p>Address: {{info.address}}</p>
+                    <a class="btn btn2 btn-block" href="{% url 'update' %}">UPDATE</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card card-modify">
+                <div class="card-header">
+                    <h5>Orders</h5>
+                </div>
+                <div class="card-body">
+                    <div class="col-md-10">
+                    <table class="table" style="color:#9400D3;">
+                        <tr><th>Product</th><th>Status</th><th>Quantity</th><th>Delivery Address</th><th>Customer</th></tr>
+                        {% for order in orders %}
+                        <tr><td>{{order.product}}</td><td>{{order.status}}</td><td>{{order.quantity}}</td><td>{{order.Delivery_address}}</td><td>{{order.user_info}}</td></tr>
+                         {% endfor %}
+                    </table>
+                    </div>
+                    <a class="btn btn2 btn-block" href="{% url 'homeB' %}">Delete Order</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

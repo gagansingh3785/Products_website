@@ -1,0 +1,55 @@
+{% extends 'Information/main.html' %}
+{% block content %}
+{% include 'Information/navbar.html' %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/product.css' %}">
+<div class=container-fluid>
+	{% for order in orders %}
+    <br>
+        <div class="row">
+
+                <div class="card card-image">
+                        <div class="flexing-this">
+
+                            {% if order.product.product_image1 %}
+                                <img class='images{{forloop.counter}}' src="{{order.product.product_image1.url}}" height="200px" width="300px">
+                            {% endif %}
+                            {% if order.product.product_image2 %}
+                                <img class='images{{forloop.counter}}' src="{{order.product.product_image2.url}}" height="200px" width="300px">
+                            {% endif %}
+                            {% if order.product.product_image3 %}
+                                <img class='images{{forloop.counter}}' src="{{order.product.product_image3.url}}" height="200px" width="300px">
+                            {% endif %}
+                            {% if order.product.product_image4 %}
+                                <img class='images{{forloop.counter}}' src="{{order.product.product_image4.url}}" height="200px" width="300px">
+                            {% endif %}
+
+                        </div>
+                    <div class="indicators">
+                        <span><div class="indicator{{forloop.counter}} some" onclick='move1({{forloop.counter}})'></div></span>
+                        <span><div class="indicator{{forloop.counter}} some" onclick='move2({{forloop.counter}})'></div></span>
+                        <span><div class="indicator{{forloop.counter}} some" onclick='move3({{forloop.counter}})'></div></span>
+                        <span><div class="indicator{{forloop.counter}} some" onclick='move4({{forloop.counter}})'></div></span>
+                    </div>
+                    </div>
+
+                <div class="col-lg-8">
+                    <div class="card cardextra">
+                        <div class="card-body">
+                            <h5 class="card-title">Product Information:</h5>
+                            <p><strong>Name:</strong> {{order.product.name}}</p>
+                            <p><strong>Description:</strong> {{order.product.description}}</p>
+                            <p><strong>Price:</strong> {{order.product.price}}</p>
+                            <a class="btn btn-primary" href="{% url 'confirm' order.product.id %}">Buy</a>
+                            <a class="btn btn-danger" href="{% url 'remove_cart' order.id %}">Remove</a>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+    {% endfor %}
+
+</div>
+<script src="{% static 'js/product.js' %}"></script>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+.card{
+    box-shadow: 0px 0px 10px black;
+    width:300px;
+    margin-top:10px;
+    margin-left:40px;
+}
+
+.flexing-this{
+    overflow: hidden;
+    display:flex;
+}
+.indicators{
+    display:flex;
+    margin-left:70px;
+    margin-top:10px;
+}
+
+.some{
+    width:14px;
+    height:14px;
+    border-radius:7px;
+    background-color:white;
+    margin-left:20px;
+    border: 2px solid black;
+}
+
+.cardextra{
+
+     margin-left:25px;
+     width:83%;
+}
+
+.my_active{
+    background-color: black;
+}

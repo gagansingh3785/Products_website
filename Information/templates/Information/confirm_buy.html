@@ -1,0 +1,113 @@
+{% extends 'Information/main.html' %}
+{% load static %}
+{% block content %}
+{% include 'Information/navbar.html' %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/product.css' %}">
+<div class="contianer-fluid">
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-1"></div>
+            <div class="card card-image">
+                        <div class="flexing-this">
+
+                            {% if product.product_image1 %}
+                                <img class='images' src="{{product.product_image1.url}}" height="200px" width="300px">
+                            {% endif %}
+                            {% if product.product_image2 %}
+                                <img class='images' src="{{product.product_image2.url}}" height="200px" width="300px">
+                            {% endif %}
+                            {% if product.product_image3 %}
+                                <img class='images' src="{{product.product_image3.url}}" height="200px" width="300px">
+                            {% endif %}
+                            {% if product.product_image4 %}
+                                <img class='images' src="{{product.product_image4.url}}" height="200px" width="300px">
+                            {% endif %}
+
+                        </div>
+                    <div class="indicators">
+                        <span><div class="indicator some" onclick='move1()'></div></span>
+                        <span><div class="indicator some" onclick='move2()'></div></span>
+                        <span><div class="indicator some" onclick='move3()'></div></span>
+                        <span><div class="indicator some" onclick='move4()'></div></span>
+                    </div>
+                    </div>
+
+            <div class="card col-md-5">
+                <p><strong>Name:</strong>{{product.name}}</p>
+                <p><strong>Price:</strong>{{product.price}}</p>
+                <p><strong>Description</strong>{{product.description}}</p>
+                <div class="form">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <label for="quantity"><strong>Quantity:</strong></label><input class='form-control' id="quantity" required name="quantity" type="number">
+                    <label for="address"><strong>Address:</strong></label><input class='form-control' id="address" required name="address" type="text">
+                    <br>
+                    <input class="btn btn-success btn-block" type="submit" value="Confirm">
+                    <br>
+                </form>
+                    <a class="btn btn-danger btn-block" href="{% url 'shop' product.category %}">Cancel</a>
+                    <br>
+                </div>
+            </div>
+    </div>
+</div>
+<script>
+    let initial = document.getElementsByClassName('images');
+    for (let i = 0; i< 4;i++)
+    {
+        initial[i].style.transition = '0.5s';
+    }
+    let indicate = document.getElementsByClassName('indicator')[0];
+    indicate.style.backgroundColor = 'black';
+    function move1()
+    {
+        indicate.style.backgroundColor = 'white';
+        indicate = document.getElementsByClassName('indicator')[0];
+        indicate.style.backgroundColor = 'black';
+        let ele = document.getElementsByClassName('images');
+        ele[0].style.transform = 'translateX(0px)';
+        ele[1].style.transform = 'translateX(0px)';
+        ele[2].style.transform = 'translateX(0px)';
+        ele[3].style.transform = 'translateX(0px)';
+    }
+    function move2()
+    {
+        indicate.style.backgroundColor = 'white';
+        indicate = document.getElementsByClassName('indicator')[1];
+        indicate.style.backgroundColor = 'black';
+        let ele = document.getElementsByClassName('images');
+        ele[0].style.transform = 'translateX(-300px)';
+        ele[1].style.transform = 'translateX(-300px)';
+        ele[2].style.transform = 'translateX(-300px)';
+        ele[3].style.transform = 'translateX(-300px)';
+
+
+    }
+    function move3()
+    {
+        indicate.style.backgroundColor = 'white';
+        indicate = document.getElementsByClassName('indicator')[2];
+        indicate.style.backgroundColor = 'black';
+        let ele = document.getElementsByClassName('images');
+        ele[0].style.transform = 'translateX(-600px)';
+        ele[1].style.transform = 'translateX(-600px)';
+        ele[2].style.transform = 'translateX(-600px)';
+        ele[3].style.transform = 'translateX(-600px)';
+
+    }
+    function move4()
+    {
+        indicate.style.backgroundColor = 'white';
+        indicate = document.getElementsByClassName('indicator')[3];
+        indicate.style.backgroundColor = 'black';
+        let ele = document.getElementsByClassName('images');
+        ele[0].style.transform = 'translateX(-900px)';
+        ele[1].style.transform = 'translateX(-900px)';
+        ele[2].style.transform = 'translateX(-900px)';
+        ele[3].style.transform = 'translateX(-900px)';
+
+    }
+
+</script>
+{% endblock %}

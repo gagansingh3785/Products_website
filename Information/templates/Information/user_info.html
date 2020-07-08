@@ -1,0 +1,38 @@
+{% extends 'Information/main.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <div id="login-container">
+        <div id="login-head">
+            <p>INFORMATION</p>
+        </div>
+
+        <br>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-question"></i></span>
+                </div>
+                {{form.type_of_user}}
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon2"><i class="fas fa-phone"></i></span>
+                </div>
+                {{form.phone}}
+            </div>
+            <br>
+            <br>
+            <input id=Submit_button type="submit" value="Save">
+        </form>
+    </div>
+<script>
+    let ele = document.getElementById("choice-field");
+    ele.style.background = 'none';
+    ele.style.border = 'none';
+    ele.style.borderBottom  = '2px solid #9400D3';
+
+</script>
+
+{% endblock %}

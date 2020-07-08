@@ -1,0 +1,17 @@
+{% extends 'Information/main.html' %}
+{% load static %}
+{% block content %}
+{% include 'Information/navbar.html' %}
+	<div class='jumbotron'>
+		<h1 class='display-4'>Are you sure?</h1>
+		<form method='POST' action=''>
+			{% csrf_token %}
+			<label for=yes>Yes : </label><input id=yes type=radio name='choice' value='yes'>
+			<br>
+			<label for=no>No : </label><input id=yes type=radio name='choice' value='no'>
+			<br>
+			<input type=submit class='btn btn-primary btn-lg' value='Submit'>
+		</form>
+	</div>
+	
+{% endblock %}

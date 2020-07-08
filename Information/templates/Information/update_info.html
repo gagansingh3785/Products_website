@@ -1,0 +1,26 @@
+{% extends 'Information/main.html' %}
+{% block content %}
+{% include 'Information/navbar.html' %}
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-md-1">
+
+            </div>
+
+            <div class="col-md-10">
+                <h2>Update Information</h2>
+                <br>
+                <form  action="" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{form}}
+                            <br>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Update</button>
+                </form>
+                </div>
+            </div>
+
+    </div>
+{% endblock %}

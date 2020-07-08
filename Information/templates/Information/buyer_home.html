@@ -1,0 +1,68 @@
+{% extends 'Information/main.html' %}
+{% load static %}
+{% block content %}
+ {% include 'Information/navbar.html' %}
+<div class="container-fluid">
+ <div class="row">
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-10">
+     {% include 'Information/carousel.html' %}
+  </div>
+ </div>
+ <br>
+ <div class="row">
+  <div class="col-md-4">
+     <div class="card" style="box-shadow: 0px 0px 10px black; margin-top:20px;">
+      <img class="card-img-top" src="https://review.chinabrands.com/chinabrands/seo/image/20180511/20180511044821569787-1.gif" height="200px">
+      <div class="card-body">
+       <h5 class="card-title">Clothings</h5>
+       <a class="btn btn-primary btn-block" href="{% url 'shop' Clothing %}">Shop</a>
+      </div>
+
+     </div>
+  </div>
+   <div class="col-md-4">
+    <div class="card" style="box-shadow: 0px 0px 10px black; margin-top:20px;">
+     <img class="card-img-top" src="https://bsmedia.business-standard.com/_media/bs/img/article/2017-06/05/full/1496681776-4413.jpg" height="200px">
+     <div class="card-body">
+      <h5 class="card-title">Footwear</h5>
+      <a class="btn btn-primary btn-block" href="{% url 'shop' Footwear %}">Shop</a>
+     </div>
+    </div>
+   </div>
+  <div class="col-md-4">
+   <div class="card" style="box-shadow: 0px 0px 10px black; margin-top:20px;">
+     <img class="card-img-top" src="https://png.pngitem.com/pimgs/s/247-2474633_transparent-electronics-items-png-png-download.png" height="200px">
+    <div class="card-body">
+     <h5 class="card-title">Electronics</h5>
+     <a class="btn btn-primary btn-block" href="{% url 'shop' Electronics %}">Shop</a>
+    </div>
+   </div>
+  </div>
+ </div>
+ <br>
+ <div class="row">
+  <div class="col-md-4">
+   <div class="card" style="box-shadow: 0px 0px 10px black;margin-top:20px;">
+    <img class="card-image-top" src="https://img.jakpost.net/c/2019/03/02/2019_03_02_66706_1551461528._large.jpg" height="200px">
+    <div class="card-body">
+     <h5 class="card-title">Books</h5>
+     <a class="btn btn-primary btn-block" href="{% url 'shop' Books %}">Shop</a>
+    </div>
+   </div>
+  </div>
+  <div class="col-md-4">
+   <div class="card" style="box-shadow: 0px 0px 10px black; margin-top:20px;">
+    <img class="card-image-top" src="https://cdn1.mecum.com/auctions/ga0320/ga0320-424981/images/661-1-1583250928003@2x.jpg?1583250950000"  height="200px">
+    <div class="card-body">
+     <h5 class="card-title">Others</h5>
+     <a class="btn btn-primary btn-block" href="{% url 'shop' other %}">Shop</a>
+    </div>
+   </div>
+  </div>
+ </div>
+
+</div>
+
+{% endblock %}
